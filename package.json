@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "client": "npm run start --prefix client",
+    "start": "node server/index.js",
+    "app": "concurrently npm \"npm run start\" \"npm run client\"",
+    "build": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
