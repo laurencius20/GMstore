@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../lib/axios';
 import { setLoading, setError, cartItemAdd, cartItemRemoval, setExpressShipping, clearCart } from '../slices/cart';
 
 export const addCartItem = (id, qty) => async (dispatch) => {

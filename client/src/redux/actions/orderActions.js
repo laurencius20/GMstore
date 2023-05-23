@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../lib/axios';
 import { setError, shippingAddressAdd, clearOrder } from '../slices/order';
 
 export const setShippingAddress = (data) => (dispatch) => {
@@ -23,7 +23,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.post('api/orders', preparedOrder, config);
+    const { data } = await axios.post('/api/orders', preparedOrder, config);
   } catch (error) {
     dispatch(
       setError(

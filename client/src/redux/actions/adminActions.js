@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../../lib/axios';
 import {
   getUsers,
   userDelete,
@@ -25,7 +25,7 @@ export const getAllUsers = () => async (dispatch, getState) => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.get('api/users', config);
+    const { data } = await axios.get('/api/users', config);
     dispatch(getUsers(data));
   } catch (error) {
     dispatch(
@@ -52,7 +52,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.delete(`api/users/${id}`, config);
+    const { data } = await axios.delete(`/api/users/${id}`, config);
     dispatch(userDelete(data));
   } catch (error) {
     dispatch(
@@ -70,7 +70,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
 export const getAllPaymentPhotos = () => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const { data } = await axios.get('api/payments/get-paymentPhoto');
+    const { data } = await axios.get('/api/payments/get-paymentPhoto');
     dispatch(getPaymentPhotos(data));
   } catch (error) {
     dispatch(
@@ -98,7 +98,7 @@ export const getAllOrders = () => async (dispatch, getState) => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.get('api/orders', config);
+    const { data } = await axios.get('/api/orders', config);
     dispatch(getOrders(data));
   } catch (error) {
     dispatch(
@@ -115,7 +115,7 @@ export const getAllOrders = () => async (dispatch, getState) => {
 
 export const deletePaymentPhoto = (id) => async (dispatch) => {
   try {
-    const { data } = await axios.delete(`api/payments/get-paymentPhoto/${id}`);
+    const { data } = await axios.delete(`/api/payments/get-paymentPhoto/${id}`);
     dispatch(paymentPhotoDelete(data));
   } catch (error) {
     dispatch(
@@ -142,7 +142,7 @@ export const deleteOrder = (id) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.delete(`api/orders/${id}`, config);
+    const { data } = await axios.delete(`/api/orders/${id}`, config);
     dispatch(orderDelete(data));
   } catch (error) {
     dispatch(
@@ -170,7 +170,7 @@ export const setDelivered = (id) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
       },
     };
-    await axios.put(`api/orders/${id}`, {}, config);
+    await axios.put(`/api/orders/${id}`, {}, config);
     dispatch(setDeliveredFlag());
   } catch (error) {
     dispatch(
@@ -204,7 +204,7 @@ export const updateProduct =
         },
       };
       const { data } = await axios.put(
-        `api/products`,
+        `/api/products`,
         { brand, name, category, stock, price, id, productIsNew, description, image },
         config
       );
@@ -236,7 +236,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.delete(`api/products/${id}`, config);
+    const { data } = await axios.delete(`/api/products/${id}`, config);
     dispatch(setProducts(data));
     dispatch(setProductUpdateFlag());
     dispatch(resetError());
@@ -266,7 +266,7 @@ export const uploadProduct = (newProduct) => async (dispatch, getState) => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.post(`api/products`, newProduct, config);
+    const { data } = await axios.post(`/api/products`, newProduct, config);
     dispatch(setProducts(data));
     dispatch(setProductUpdateFlag());
   } catch (error) {
@@ -294,7 +294,7 @@ export const removeReview = (productId, reviewId) => async (dispatch, getState) 
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.put(`api/products/${productId}/${reviewId}`, {}, config);
+    const { data } = await axios.put(`/api/products/${productId}/${reviewId}`, {}, config);
     dispatch(setProducts(data));
     dispatch(setReviewRemovalFlag());
   } catch (error) {

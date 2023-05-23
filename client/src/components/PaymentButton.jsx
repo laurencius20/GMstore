@@ -12,7 +12,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import axios from 'axios';
+import axios from '../lib/axios';
 
 const PaymentButton = ({ total, onPaymentSuccess, onPaymentError, disabled }) => {
   const [image, setImage] = useState('');
