@@ -41,10 +41,6 @@ const PaymentButton = ({ total, onPaymentSuccess, onPaymentError, disabled }) =>
     }
   };
 
-  const clearImage = () => {
-    setImage('');
-  };
-
   const closePaymentSection = () => {
     setImage(null);
     onClose();
@@ -75,7 +71,7 @@ const PaymentButton = ({ total, onPaymentSuccess, onPaymentError, disabled }) =>
               Please Transfer to this account :
             </Text>
             <Text align='center' pt='10px' fontSize='lg' fontWeight='bold'>
-              0070732572 - Laurencius Louis
+              0013433655 - PT. Grahanindo Mecanitron
             </Text>
             <Text py='10px' fontSize='lg' fontWeight='semibold'>
               And make sure submit your payment proof !
