@@ -16,29 +16,39 @@ import axios from '../lib/axios';
 
 const PaymentButton = ({ total, onPaymentSuccess, onPaymentError, disabled }) => {
   const [image, setImage] = useState('');
+  const [imagePreview, setImagePreview] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const convertToBase64 = (e) => {
-    console.log(e);
+  const changeHandler = (e) => {
+    if (e.target.files.length === 0) {
+      return;
+    }
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
-      console.log(reader.result);
-      setImage(reader.result);
+      setImagePreview(reader.result);
     };
-    reader.onerror = (error) => {
-      console.log('Error : ', error);
-    };
+    console.log(e.target.files[0]);
+    setImage(e.target.files[0]);
   };
 
   const finishPayment = async () => {
+    setLoading(true);
     try {
-      const response = await axios.post('/api/payments/upload-paymentPhoto', { paymentPhoto: image });
+      const formData = new FormData();
+      formData.append('paymentPhoto', image);
+      const response = await axios.post('/api/payments/upload-paymentPhoto', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       console.log(response.data); // Success message from the server
       onPaymentSuccess();
     } catch (error) {
       console.error('Failed to post data:', error);
       onPaymentError();
     }
+    setLoading(false);
   };
 
   const closePaymentSection = () => {
@@ -76,8 +86,8 @@ const PaymentButton = ({ total, onPaymentSuccess, onPaymentError, disabled }) =>
             <Text py='10px' fontSize='lg' fontWeight='semibold'>
               And make sure submit your payment proof !
             </Text>
-            <input accept='image/*' type='file' onChange={convertToBase64}></input>
-            {image === '' || image === null ? '' : <img width={250} height={250} src={image} />}
+            <input accept='image/*' type='file' onChange={changeHandler}></input>
+            {image === '' || image === null ? '' : <img width={250} height={250} src={imagePreview} />}
           </ModalBody>
 
           <ModalFooter>
@@ -87,7 +97,7 @@ const PaymentButton = ({ total, onPaymentSuccess, onPaymentError, disabled }) =>
             {image === '' || image === null ? (
               ''
             ) : (
-              <Button colorScheme='blue' onClick={finishPayment}>
+              <Button isLoading={loading} loadingText='Submitting' colorScheme='blue' onClick={finishPayment}>
                 Finish Your Order
               </Button>
             )}
