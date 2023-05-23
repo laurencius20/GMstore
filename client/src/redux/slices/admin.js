@@ -58,6 +58,7 @@ export const adminSlice = createSlice({
       state.userRemoval = false;
       state.deliveredFlag = false;
       state.orderRemoval = false;
+      state.paymentPhotoRemoval = false;
     },
     setDeliveredFlag: (state) => {
       state.deliveredFlag = true;

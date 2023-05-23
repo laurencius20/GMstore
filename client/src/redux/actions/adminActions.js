@@ -114,6 +114,7 @@ export const getAllOrders = () => async (dispatch, getState) => {
 };
 
 export const deletePaymentPhoto = (id) => async (dispatch) => {
+  dispatch(setLoading(true));
   try {
     const { data } = await axios.delete(`/api/payments/get-paymentPhoto/${id}`);
     dispatch(paymentPhotoDelete(data));
