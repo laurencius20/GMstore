@@ -130,14 +130,21 @@ const CheckoutOrderSummary = () => {
       <Box align='center'>
         <Text fontSize='sm'>Have questions? or need help to complete your order?</Text>
         <Flex justifyContent='center' color={mode('blue.500', 'blue.100')}>
-          <Flex align='center'>
-            <PhoneIcon />
-            <Text m='2'>Phone</Text>
-          </Flex>
-          <Flex align='center'>
-            <EmailIcon />
-            <Text m='2'>Email</Text>
-          </Flex>
+          <Link href='tel:085157311671'>
+            <Flex align='center'>
+              <PhoneIcon />
+              <Text m='2'>Phone</Text>
+            </Flex>
+          </Link>
+          <Text m='2' pr='2'>
+            Or
+          </Text>
+          <Link href='mailto:louissaga@gmail.com'>
+            <Flex align='center'>
+              <EmailIcon />
+              <Text m='2'>Email</Text>
+            </Flex>
+          </Link>
         </Flex>
       </Box>
       <Divider bg={mode('gray.400', 'gray.800')} />

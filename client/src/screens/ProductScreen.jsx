@@ -125,7 +125,7 @@ const ProductScreen = () => {
                     </Text>
                     <Flex>
                       <HStack spacing='2px'>
-                        <StarIcon color='orange.500' />
+                        <StarIcon color={product.rating >= 1 ? 'orange.500' : 'gray.200'} />
                         <StarIcon color={product.rating >= 2 ? 'orange.500' : 'gray.200'} />
                         <StarIcon color={product.rating >= 3 ? 'orange.500' : 'gray.200'} />
                         <StarIcon color={product.rating >= 4 ? 'orange.500' : 'gray.200'} />

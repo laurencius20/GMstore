@@ -81,7 +81,10 @@ const PaymentButton = ({ total, onPaymentSuccess, onPaymentError, disabled }) =>
               Please Transfer to this account :
             </Text>
             <Text align='center' pt='10px' fontSize='lg' fontWeight='bold'>
-              0013433655 - PT. Grahanindo Mecanitron
+              0000000000 - PT. Grahanindo Mecanitron
+            </Text>
+            <Text py='10px' fontSize='sm' fontWeight='semibold'>
+              NOTE: Testing App ! Just submit any photo.
             </Text>
             <Text py='10px' fontSize='lg' fontWeight='semibold'>
               And make sure submit your payment proof !
